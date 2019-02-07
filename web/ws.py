@@ -60,7 +60,14 @@ def execute_inicializacao():
 
 @application.route('/comandoA', methods=['GET', 'POST'])
 def comandoA():
-
+    '''[Primeiro Comando]
+    Raises:
+        Invalid -- [description]
+        inv -- [description]
+        Invalid -- [description]
+    Returns:
+        [type] -- [description]
+    '''
     try:
         if (request.method == 'POST' or request.method == 'GET') is False:
             raise Invalid('Comando invalido', status_code=404)
