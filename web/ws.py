@@ -10,10 +10,13 @@ Update on 20190207
 #pylint: disable=W0703
 #pylint: disable=R0913
 
+import sys
+import os
 import logging
 
 from flask import Flask, jsonify, json, request#, #g #render_template,
 
+from csapp.utils.loads import set_config_yaml
 from csapp.web.invalid import Invalid
 
 application = Flask(__name__)
@@ -43,7 +46,17 @@ def api_root():
 def execute_inicializacao():
     """[Inicaliza dos singleton]
     """
-    pass
+    try:
+        config, log = set_config_yaml('CSAPP v-0.0.1', __name__, os.environ['CFG_CSAPP'] if 'CFG_CSAPP' in os.environ else './etc/setup.yaml')
+        log.info('Config carregado com sucesso')
+
+    except Exception as exp:
+        import pathlib
+        current_dir = pathlib.Path(__file__).parent
+        current_file = pathlib.Path(__file__)
+        print('Path Local:{0}, File: {1} motivo:{3}'.format(current_dir, current_file, str(exp)))
+
+        sys.exit(1)
 
 @application.route('/comandoA', methods=['GET', 'POST'])
 def comandoA():
