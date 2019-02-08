@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20190207
-Update on 20190207
+Update on 20190208
 @author: Eduardo Pagotto
 '''
 
@@ -16,8 +16,8 @@ import logging
 
 from flask import Flask, jsonify, json, request#, #g #render_template,
 
-from csapp.utils.loads import set_config_yaml
-from csapp.web.invalid import Invalid
+from utils.loads import set_config_yaml
+from web.invalid import Invalid
 
 application = Flask(__name__)
 
@@ -40,6 +40,7 @@ def api_root():
     Returns:
         [string] -- [mostra mensage de bem-vindo]
     """
+    logging.debug('Index chamado...')
     return 'Welcome'
 
 @application.before_first_request
