@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 '''
 Created on 20190207
-Update on 20190208
+Update on 20190209
 @author: Eduardo Pagotto
 '''
 
@@ -48,6 +48,12 @@ def execute_inicializacao():
     """[Inicaliza dos singleton]
     """
     try:
+        # localização presumido do log
+        log_dir = './log' 
+        if not os.path.exists(log_dir):
+            os.makedirs(log_dir)
+
+        #carga de configuração de app e log 
         config, log = set_config_yaml('CSAPP v-0.0.1', __name__, os.environ['CFG_CSAPP'] if 'CFG_CSAPP' in os.environ else './etc/setup.yaml')
         log.info('Config carregado com sucesso')
 
